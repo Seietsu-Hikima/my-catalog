@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="dome" cx=".38" cy=".3" r=".8">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset=".6" stop-color="#f6efe0"/>
+      <stop offset="1" stop-color="#dfd1b6"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="#f0e0d8"/>
+  <ellipse cx="300" cy="478" rx="110" ry="14" fill="#d9c5ba"/>
+  <circle cx="300" cy="350" r="112" fill="none" stroke="#b9974f" stroke-width="24"/>
+  <circle cx="300" cy="350" r="118" fill="none" stroke="#e4c988" stroke-width="5"/>
+  <circle cx="300" cy="196" r="96" fill="#b9974f"/>
+  <circle cx="300" cy="196" r="84" fill="url(#dome)"/>
+  <g fill="#c7798a">
+    <ellipse cx="300" cy="162" rx="14" ry="24"/>
+    <ellipse cx="300" cy="162" rx="14" ry="24" transform="rotate(72 300 192)"/>
+    <ellipse cx="300" cy="162" rx="14" ry="24" transform="rotate(144 300 192)"/>
+    <ellipse cx="300" cy="162" rx="14" ry="24" transform="rotate(216 300 192)"/>
+    <ellipse cx="300" cy="162" rx="14" ry="24" transform="rotate(288 300 192)"/>
+  </g>
+  <circle cx="300" cy="192" r="11" fill="#e8bd56"/>
+  <path d="M262 248 C272 236 282 232 292 226" fill="none" stroke="#7c9470" stroke-width="5" stroke-linecap="round"/>
+  <path d="M252 158 C262 138 280 130 296 128" fill="none" stroke="#ffffff" stroke-opacity=".85" stroke-width="9" stroke-linecap="round"/>
+  <text x="300" y="560" text-anchor="middle" font-family="sans-serif" font-size="22" letter-spacing="5" fill="#6d6155">SAMPLE</text>
+</svg>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>作品カタログ</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a id="brand" class="brand" href="#home">作品カタログ</a>
+    <nav class="site-nav" aria-label="メインメニュー">
+      <a class="nav-button" href="#home" data-route="home">ホーム</a>
+      <a class="nav-button" href="#works" data-route="works">作品一覧</a>
+      <a class="nav-button" href="#cart" data-route="cart" id="nav-cart">カート<span id="cart-count" class="cart-count" hidden></span></a>
+      <a class="nav-button" href="#company" data-route="company">会社情報</a>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <p id="message" class="message" hidden></p>
+    <noscript><p class="message">作品を表示するには JavaScript を有効にしてください。</p></noscript>
+
+    <section id="view-home" hidden>
+      <div class="hero">
+        <h1 id="home-title" tabindex="-1"></h1>
+        <p id="shop-description"></p>
+        <a class="primary-button" href="#works">作品一覧を見る</a>
+      </div>
+      <div id="pickup" hidden>
+        <h2 class="section-title">ピックアップ</h2>
+        <ul id="pickup-list" class="work-list"></ul>
+      </div>
+    </section>
+
+    <section id="view-works" hidden>
+      <h1 id="works-title" class="page-title" tabindex="-1">作品一覧</h1>
+      <p id="works-empty" class="message" hidden>作品を準備中です。</p>
+      <ul id="work-list" class="work-list"></ul>
+    </section>
+
+    <section id="view-cart" hidden>
+      <h1 id="cart-title" class="page-title" tabindex="-1">カート</h1>
+      <p id="cart-empty" class="message" hidden>カートは空です。<br><a href="#works">作品一覧を見る</a></p>
+      <ul id="cart-list" class="cart-list"></ul>
+      <div id="cart-summary" class="cart-summary" hidden>
+        <p class="cart-total" aria-live="polite">合計 <strong id="cart-total"></strong></p>
+        <p class="cart-note">ご注文方法は現在準備中です。</p>
+      </div>
+    </section>
+
+    <section id="view-company" hidden>
+      <h1 id="company-title" class="page-title" tabindex="-1">会社情報</h1>
+      <p id="company-empty" class="message" hidden>会社情報を準備中です。</p>
+      <dl id="shop-contact" class="shop-contact" hidden></dl>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small id="footer-text"></small>
+  </footer>
+
+  <dialog id="work-dialog" class="work-dialog" aria-labelledby="dialog-title">
+    <button type="button" id="dialog-close" class="dialog-close" aria-label="閉じる">&times;</button>
+    <div id="dialog-body" class="dialog-body">
+      <div class="dialog-gallery">
+        <div id="dialog-image" class="dialog-image"></div>
+        <div id="dialog-thumbs" class="dialog-thumbs"></div>
+      </div>
+      <div class="dialog-info">
+        <div id="dialog-status"></div>
+        <h2 id="dialog-title"></h2>
+        <p id="dialog-price" class="dialog-price"></p>
+        <p id="dialog-description" class="dialog-description"></p>
+        <dl id="dialog-specs" class="dialog-specs"></dl>
+        <div class="dialog-actions">
+          <button type="button" id="dialog-add" class="primary-button">カートに入れる</button>
+          <p id="dialog-cart-note" class="dialog-cart-note" role="status"></p>
+          <a id="dialog-cart-link" href="#cart" hidden>カートを見る</a>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="works.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

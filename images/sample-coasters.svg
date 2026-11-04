@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <rect width="600" height="600" fill="#c9a981"/>
+  <g fill="none" stroke="#b8956b" stroke-width="3">
+    <path d="M0 110 C160 90 400 130 600 100"/>
+    <path d="M0 300 C200 330 380 280 600 310"/>
+    <path d="M0 500 C180 480 420 520 600 490"/>
+  </g>
+  <g transform="translate(378 208)">
+    <circle r="150" fill="#6f8c73" transform="translate(5 8)" opacity=".35"/>
+    <circle r="146" fill="#8fa98d"/>
+    <g fill="none" stroke="#b5c9ae" stroke-width="13" stroke-dasharray="15 6">
+      <circle r="28"/><circle r="56"/><circle r="84"/><circle r="112"/><circle r="136"/>
+    </g>
+    <circle r="10" fill="#b5c9ae"/>
+  </g>
+  <g transform="translate(222 332)">
+    <circle r="150" fill="#6e5a40" transform="translate(6 10)" opacity=".4"/>
+    <circle r="146" fill="#e7d8bc"/>
+    <g fill="none" stroke="#fbf4e3" stroke-width="13" stroke-dasharray="15 6">
+      <circle r="28"/><circle r="56"/><circle r="84"/><circle r="112"/><circle r="136"/>
+    </g>
+    <circle r="10" fill="#fbf4e3"/>
+  </g>
+  <text x="470" y="566" text-anchor="middle" font-family="sans-serif" font-size="22" letter-spacing="5" fill="#4f3f2c">SAMPLE</text>
+</svg>

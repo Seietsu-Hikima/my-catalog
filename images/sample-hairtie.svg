@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <radialGradient id="wood" cx=".42" cy=".38" r=".75">
+      <stop offset="0" stop-color="#d4a877"/>
+      <stop offset="1" stop-color="#a87547"/>
+    </radialGradient>
+    <clipPath id="face"><circle cx="300" cy="190" r="108"/></clipPath>
+  </defs>
+  <rect width="600" height="600" fill="#f1e7d8"/>
+  <ellipse cx="300" cy="496" rx="130" ry="12" fill="#ddd0bb"/>
+  <ellipse cx="300" cy="350" rx="122" ry="132" fill="none" stroke="#6c4a4a" stroke-width="15"/>
+  <ellipse cx="300" cy="350" rx="122" ry="132" fill="none" stroke="#8a6464" stroke-width="5" stroke-dasharray="6 7"/>
+  <circle cx="300" cy="190" r="108" fill="#8c5e37"/>
+  <circle cx="300" cy="186" r="104" fill="url(#wood)"/>
+  <g clip-path="url(#face)" fill="none" stroke="#936339" stroke-opacity=".55" stroke-width="3">
+    <path d="M180 120 C260 150 340 100 420 134"/>
+    <path d="M180 172 C260 200 340 150 420 184"/>
+    <path d="M180 228 C260 256 340 206 420 240"/>
+    <path d="M180 270 C260 296 340 250 420 280"/>
+  </g>
+  <circle cx="300" cy="186" r="78" fill="none" stroke="#8c5e37" stroke-opacity=".7" stroke-width="4"/>
+  <g fill="#5b3b20">
+    <circle cx="274" cy="160" r="12"/>
+    <circle cx="326" cy="160" r="12"/>
+    <circle cx="274" cy="212" r="12"/>
+    <circle cx="326" cy="212" r="12"/>
+  </g>
+  <g stroke="#6c4a4a" stroke-width="8" stroke-linecap="round">
+    <path d="M274 160 L326 212"/>
+    <path d="M326 160 L274 212"/>
+  </g>
+  <text x="300" y="560" text-anchor="middle" font-family="sans-serif" font-size="22" letter-spacing="5" fill="#6d6155">SAMPLE</text>
+</svg>

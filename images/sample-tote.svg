@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <pattern id="canvas" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" fill="#efe6d3"/>
+      <path d="M0 1.5 H6 M0 4.5 H6" stroke="#e0d4bc" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="600" height="600" fill="#d6dfd8"/>
+  <ellipse cx="300" cy="498" rx="176" ry="14" fill="#bcc8bf"/>
+  <path d="M222 220 C222 60 378 60 378 220" fill="none" stroke="#39506a" stroke-width="20"/>
+  <path d="M172 490 L150 216 H450 L428 490Z" fill="url(#canvas)" stroke="#c8baa0" stroke-width="3"/>
+  <path d="M152 240 H448" fill="none" stroke="#a89a80" stroke-width="3" stroke-dasharray="9 7"/>
+  <path d="M222 220 C222 90 378 90 378 220" fill="none" stroke="#4a6585" stroke-width="20"/>
+  <g fill="#4a6585">
+    <rect x="212" y="216" width="20" height="62"/>
+    <rect x="368" y="216" width="20" height="62"/>
+  </g>
+  <g fill="none" stroke="#efe6d3" stroke-width="2.5">
+    <path d="M216 266 L228 278 M228 266 L216 278"/>
+    <path d="M372 266 L384 278 M384 266 L372 278"/>
+  </g>
+  <path d="M230 330 H370 V430 C370 440 362 446 354 446 H246 C238 446 230 440 230 430Z" fill="#e6dac3" stroke="#a89a80" stroke-width="3" stroke-dasharray="9 7"/>
+  <text x="300" y="560" text-anchor="middle" font-family="sans-serif" font-size="22" letter-spacing="5" fill="#556259">SAMPLE</text>
+</svg>
