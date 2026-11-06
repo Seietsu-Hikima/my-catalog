@@ -16,6 +16,7 @@ const VIEW_LABELS = {
 const PICKUP_COUNT = 4;
 const CART_STORAGE_KEY = "handmade-catalog-cart";
 const MAX_QUANTITY = 99;
+const FILTER_ALL = "all";
 
 const dialogEl = document.getElementById("work-dialog");
 const dialogBodyEl = document.getElementById("dialog-body");
@@ -23,6 +24,7 @@ const dialogBodyEl = document.getElementById("dialog-body");
 let shopName = "作品カタログ";
 let cart = new Map(); // 作品 id → 数量
 let dialogWork = null;
+let workFilter = FILTER_ALL;
 
 /* ---------- 共通 ---------- */
 
@@ -378,9 +380,45 @@ function renderContact(shop) {
   document.getElementById("company-empty").hidden = !isEmpty;
 }
 
+function renderWorkList() {
+  const works = workFilter === FILTER_ALL ? WORKS : WORKS.filter((work) => work.status === workFilter);
+  document.getElementById("work-list").replaceChildren(...works.map(createCard));
+
+  const emptyEl = document.getElementById("works-empty");
+  emptyEl.textContent = WORKS.length === 0 ? "作品を準備中です。" : "該当する作品はありません。";
+  emptyEl.hidden = works.length > 0;
+}
+
+function setWorkFilter(filter) {
+  workFilter = filter;
+  document.querySelectorAll(".filter-button").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+  });
+  renderWorkList();
+  const label = filter === FILTER_ALL ? "すべて" : STATUS_LABELS[filter];
+  const count = document.getElementById("work-list").childElementCount;
+  document.getElementById("works-result").textContent = `${label}の作品を${count}点表示しています`;
+}
+
+function renderWorkFilter() {
+  const filterEl = document.getElementById("work-filter");
+  const options = [[FILTER_ALL, "すべて"], ...Object.entries(STATUS_LABELS)];
+  filterEl.replaceChildren(...options.map(([filter, label]) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "filter-button";
+    button.dataset.filter = filter;
+    button.textContent = label;
+    button.setAttribute("aria-pressed", String(filter === workFilter));
+    button.addEventListener("click", () => setWorkFilter(filter));
+    return button;
+  }));
+  filterEl.hidden = WORKS.length === 0;
+}
+
 function renderWorks() {
-  document.getElementById("work-list").append(...WORKS.map(createCard));
-  document.getElementById("works-empty").hidden = WORKS.length > 0;
+  renderWorkFilter();
+  renderWorkList();
   document.getElementById("pickup-list").append(...WORKS.slice(0, PICKUP_COUNT).map(createCard));
   document.getElementById("pickup").hidden = WORKS.length === 0;
 }

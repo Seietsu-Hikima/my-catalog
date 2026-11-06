@@ -1,0 +1,9 @@
+# テストの出力
+.playwright-mcp/
+
+# 同期で作られるファイル
+works.backup.js
+*.tmp
+
+# 個人の Claude Code 設定
+.claude/settings.local.json
