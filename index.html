@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NEKOMO｜猫デザインのスマホグッズ専門店</title>
+  <meta name="description" content="猫デザインのスマホケース・充電器・スタンドなど、毎日がちょっと楽しくなるスマホグッズの専門店 NEKOMO。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="header">
+    <div class="container header__inner">
+      <a href="#" class="logo" aria-label="NEKOMO トップへ">
+        <span class="logo__icon" id="logoIcon"></span>
+        <span class="logo__text">NEKOMO</span>
+      </a>
+      <nav class="nav" id="nav">
+        <a href="#products">商品一覧</a>
+        <a href="#features">こだわり</a>
+        <a href="#guide">ご利用ガイド</a>
+        <a href="#faq">よくある質問</a>
+      </nav>
+      <div class="header__actions">
+        <button class="cart-btn" id="cartOpen" aria-label="カートを開く">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          <span class="cart-btn__count" id="cartCount">0</span>
+        </button>
+        <button class="menu-btn" id="menuBtn" aria-label="メニュー"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ヒーロー -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <p class="hero__eyebrow">猫好きのための スマホグッズ専門店</p>
+          <h1 class="hero__title">スマホに、<br><span class="accent">ねこ</span>のいる毎日。</h1>
+          <p class="hero__lead">ケース、充電器、スタンドまで。<br>手に取るたびにほっこりする、猫デザインのスマホグッズを集めました。</p>
+          <div class="hero__cta">
+            <a href="#products" class="btn btn--primary">商品を見る</a>
+            <a href="#features" class="btn btn--ghost">NEKOMOのこだわり</a>
+          </div>
+          <ul class="hero__badges">
+            <li>🐾 5,000円以上で送料無料</li>
+            <li>🐾 最短翌日発送</li>
+          </ul>
+        </div>
+        <div class="hero__visual" id="heroVisual" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- お知らせ帯 -->
+    <div class="ticker">
+      <div class="ticker__track">
+        <span>🐈 新作「ねこ耳スマホケース」入荷しました</span>
+        <span>🐈 ご注文金額5,000円以上で送料無料</span>
+        <span>🐈 ギフトラッピング無料受付中</span>
+        <span>🐈 新作「ねこ耳スマホケース」入荷しました</span>
+        <span>🐈 ご注文金額5,000円以上で送料無料</span>
+        <span>🐈 ギフトラッピング無料受付中</span>
+      </div>
+    </div>
+
+    <!-- 商品一覧 -->
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section__head">
+          <p class="section__eyebrow">PRODUCTS</p>
+          <h2 class="section__title">商品一覧</h2>
+        </div>
+        <div class="filters" id="filters" role="tablist">
+          <button class="filter is-active" data-cat="all">すべて</button>
+          <button class="filter" data-cat="case">ケース</button>
+          <button class="filter" data-cat="charge">充電グッズ</button>
+          <button class="filter" data-cat="accessory">アクセサリー</button>
+        </div>
+        <div class="grid" id="productGrid"></div>
+      </div>
+    </section>
+
+    <!-- こだわり -->
+    <section class="section section--tint" id="features">
+      <div class="container">
+        <div class="section__head">
+          <p class="section__eyebrow">FEATURES</p>
+          <h2 class="section__title">NEKOMOのこだわり</h2>
+        </div>
+        <div class="features">
+          <article class="feature">
+            <div class="feature__icon">🎨</div>
+            <h3>オリジナルデザイン</h3>
+            <p>猫のしぐさや表情をモチーフに、すべて自社でデザイン。ほかでは手に入らないアイテムです。</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">🛡️</div>
+            <h3>毎日使える品質</h3>
+            <p>かわいいだけじゃなく、耐衝撃素材やPSE適合品など、安心して毎日使える品質にこだわっています。</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon">🎁</div>
+            <h3>ギフトにもぴったり</h3>
+            <p>猫好きさんへのプレゼントに。ねこ柄ラッピングを無料でお付けできます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ご利用ガイド -->
+    <section class="section" id="guide">
+      <div class="container">
+        <div class="section__head">
+          <p class="section__eyebrow">GUIDE</p>
+          <h2 class="section__title">ご利用ガイド</h2>
+        </div>
+        <div class="guide">
+          <div class="guide__item">
+            <h3>送料</h3>
+            <p>全国一律 600円（税込）<br>ご注文金額 5,000円以上で<strong>送料無料</strong></p>
+          </div>
+          <div class="guide__item">
+            <h3>お支払い方法</h3>
+            <p>クレジットカード / コンビニ払い / 銀行振込 / 代金引換</p>
+          </div>
+          <div class="guide__item">
+            <h3>発送</h3>
+            <p>平日14時までのご注文は当日発送。<br>土日祝のご注文は翌営業日に発送します。</p>
+          </div>
+          <div class="guide__item">
+            <h3>返品・交換</h3>
+            <p>商品到着後7日以内、未使用品に限り承ります。初期不良は送料当店負担で交換いたします。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section--tint" id="faq">
+      <div class="container container--narrow">
+        <div class="section__head">
+          <p class="section__eyebrow">FAQ</p>
+          <h2 class="section__title">よくある質問</h2>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>対応機種を教えてください。</summary>
+            <p>スマホケース・保護グッズは iPhone 15 / 16 / 17 シリーズ、主要な Android 機種に対応しています。各商品ページの対応機種をご確認ください。</p>
+          </details>
+          <details>
+            <summary>ワイヤレス充電器はどの機種で使えますか？</summary>
+            <p>Qi 規格に対応したスマートフォンでご利用いただけます。厚みのあるケースを装着している場合は充電できないことがあります。</p>
+          </details>
+          <details>
+            <summary>ギフトラッピングはできますか？</summary>
+            <p>はい、無料で承ります。ご注文時の備考欄に「ラッピング希望」とご記入ください。</p>
+          </details>
+          <details>
+            <summary>注文後のキャンセルはできますか？</summary>
+            <p>発送前であればキャンセル可能です。お問い合わせフォームよりお早めにご連絡ください。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ニュースレター -->
+    <section class="section newsletter">
+      <div class="container container--narrow newsletter__inner">
+        <h2>新作・セール情報をお届けします</h2>
+        <p>メールマガジン登録で、次回使える10%OFFクーポンをプレゼント。</p>
+        <form class="newsletter__form" id="newsletterForm">
+          <input type="email" placeholder="メールアドレス" required aria-label="メールアドレス">
+          <button class="btn btn--primary" type="submit">登録する</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- フッター -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div>
+        <p class="logo logo--footer"><span class="logo__text">NEKOMO</span></p>
+        <p class="footer__desc">猫デザインのスマホグッズ専門店</p>
+      </div>
+      <ul class="footer__links">
+        <li><a href="#">特定商取引法に基づく表記</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+        <li><a href="#">利用規約</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+      </ul>
+    </div>
+    <p class="footer__copy">&copy; 2026 NEKOMO All Rights Reserved.</p>
+  </footer>
+
+  <!-- カートドロワー -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="drawer" aria-label="ショッピングカート">
+    <div class="drawer__head">
+      <h2>カート</h2>
+      <button class="drawer__close" id="cartClose" aria-label="閉じる">×</button>
+    </div>
+    <div class="drawer__body" id="cartItems"></div>
+    <div class="drawer__foot">
+      <div class="drawer__row"><span>小計</span><span id="subtotal">¥0</span></div>
+      <div class="drawer__row"><span>送料</span><span id="shipping">¥0</span></div>
+      <p class="drawer__note" id="shippingNote"></p>
+      <div class="drawer__row drawer__row--total"><span>合計（税込）</span><span id="total">¥0</span></div>
+      <button class="btn btn--primary btn--block" id="checkoutBtn">レジに進む</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
