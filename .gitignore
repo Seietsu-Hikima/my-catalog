@@ -1,0 +1,9 @@
+# トークンなどの秘密の設定（GitHub に上げない）
+.env
+.env*.local
+
+# Vercel が手元に作る設定
+.vercel
+
+# 動作確認で自動生成されるファイル
+.playwright-mcp/

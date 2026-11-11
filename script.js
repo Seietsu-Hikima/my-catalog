@@ -122,7 +122,8 @@ const shapes = {
 /* ---------- 商品データ ---------- */
 const CATEGORY_LABEL = { case: 'ケース', charge: '充電グッズ', accessory: 'アクセサリー' };
 
-const products = [
+// 予備の商品データ。Notion から読み込めたら、そちらに置き換わる（loadProducts）
+let products = [
   { id: 'p01', name: 'ねこ耳スマホケース', cat: 'case', price: 3280, shape: 'earCase', badge: 'NEW',
     desc: 'ぴょこんと飛び出た猫耳がポイント。耐衝撃TPU素材で落下にも強い。',
     colors: ['#f4a261', '#9fc5e8', '#b8a9d9', '#4a4a4a'], bg: '#fff1e4' },
@@ -161,6 +162,8 @@ products.forEach(p => (selectedColor[p.id] = 0));
 /* ---------- ユーティリティ ---------- */
 const $ = (s) => document.querySelector(s);
 const yen = (n) => '¥' + n.toLocaleString('ja-JP');
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const findProduct = (id) => products.find(p => p.id === id);
 const FREE_SHIPPING = 5000;
 const SHIPPING_FEE = 600;
 
@@ -179,14 +182,14 @@ function renderProducts() {
   const list = products.filter(p => currentFilter === 'all' || p.cat === currentFilter);
   grid.innerHTML = list.map((p, i) => {
     const color = p.colors[selectedColor[p.id]];
-    const badge = p.badge ? `<span class="card__badge ${p.badge === 'NEW' ? 'card__badge--new' : ''}">${p.badge}</span>` : '';
+    const badge = p.badge ? `<span class="card__badge ${p.badge === 'NEW' ? 'card__badge--new' : ''}">${esc(p.badge)}</span>` : '';
     return `
       <article class="card" style="animation-delay:${i * 40}ms">
         <div class="card__img" style="background:${p.bg}" id="img-${p.id}">${badge}${shapes[p.shape](color)}</div>
         <div class="card__body">
           <span class="card__cat">${CATEGORY_LABEL[p.cat]}</span>
-          <h3 class="card__name">${p.name}</h3>
-          <p class="card__desc">${p.desc}</p>
+          <h3 class="card__name">${esc(p.name)}</h3>
+          <p class="card__desc">${esc(p.desc)}</p>
           <div class="card__colors" aria-label="カラー選択">
             ${p.colors.map((c, ci) => `<button class="swatch ${ci === selectedColor[p.id] ? 'is-active' : ''}" style="background:${c}" data-id="${p.id}" data-ci="${ci}" aria-label="カラー${ci + 1}"></button>`).join('')}
           </div>
@@ -243,20 +246,23 @@ function saveCart() {
 }
 
 function renderCart() {
-  const totalQty = cart.reduce((s, x) => s + x.qty, 0);
+  // 今の商品一覧にない商品・色は表示しない（Notion の読み込み前や、商品を消したあとでも壊れないように）
+  const items = cart
+    .map((x, idx) => ({ x, idx, p: findProduct(x.id) }))
+    .filter(({ x, p }) => p && p.colors[x.ci]);
+  const totalQty = items.reduce((s, { x }) => s + x.qty, 0);
   $('#cartCount').textContent = totalQty;
 
   const body = $('#cartItems');
-  if (!cart.length) {
+  if (!items.length) {
     body.innerHTML = `<div class="drawer__empty">${svgWrap(cat(100, 110, 60, '#f7f1e8', { sleepy: true }))}<p>カートは空っぽです…</p></div>`;
   } else {
-    body.innerHTML = cart.map((x, idx) => {
-      const p = products.find(pp => pp.id === x.id);
+    body.innerHTML = items.map(({ x, idx, p }) => {
       return `
         <div class="cart-item">
           <div class="cart-item__img" style="background:${p.bg}">${shapes[p.shape](p.colors[x.ci])}</div>
           <div>
-            <div class="cart-item__name">${p.name}</div>
+            <div class="cart-item__name">${esc(p.name)}</div>
             <div class="cart-item__price">${yen(p.price)} / カラー${x.ci + 1}</div>
             <div class="qty">
               <button data-dec="${idx}" aria-label="減らす">−</button>
@@ -269,15 +275,15 @@ function renderCart() {
     }).join('');
   }
 
-  const subtotal = cart.reduce((s, x) => s + products.find(p => p.id === x.id).price * x.qty, 0);
+  const subtotal = items.reduce((s, { x, p }) => s + p.price * x.qty, 0);
   const shipping = subtotal === 0 || subtotal >= FREE_SHIPPING ? 0 : SHIPPING_FEE;
   $('#subtotal').textContent = yen(subtotal);
   $('#shipping').textContent = subtotal >= FREE_SHIPPING ? '無料' : yen(shipping);
   $('#total').textContent = yen(subtotal + shipping);
   $('#shippingNote').textContent = subtotal > 0 && subtotal < FREE_SHIPPING
     ? `あと ${yen(FREE_SHIPPING - subtotal)} で送料無料！` : '';
-  $('#checkoutBtn').disabled = !cart.length;
-  $('#checkoutBtn').style.opacity = cart.length ? 1 : .5;
+  $('#checkoutBtn').disabled = !items.length;
+  $('#checkoutBtn').style.opacity = items.length ? 1 : .5;
 }
 
 $('#cartItems').addEventListener('click', (e) => {
@@ -337,5 +343,32 @@ $('#heroVisual').innerHTML = `<svg viewBox="0 0 400 400" xmlns="http://www.w3.or
   ${cat(70, 320, 38, '#4a4a4a', { sleepy: true })}
 </svg>`;
 
+/* ---------- Notion から商品を読み込む ---------- */
+// サーバー側（api/products.js）経由で読む。読めないときは予備の商品データのまま表示する
+const HEX = /^#[0-9a-fA-F]{3,8}$/;
+const isValidProduct = (p) => p && typeof p.id === 'string' && p.id && typeof p.name === 'string'
+  && CATEGORY_LABEL[p.cat] && Number.isFinite(p.price) && shapes[p.shape]
+  && Array.isArray(p.colors) && p.colors.length && p.colors.every(c => HEX.test(c)) && HEX.test(p.bg);
+
+async function loadProducts() {
+  if (!location.protocol.startsWith('http')) return; // ファイルを直接開いたときは予備データのまま
+  try {
+    const res = await fetch('/api/products');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const list = ((await res.json()).products || []).filter(isValidProduct);
+    if (!list.length) throw new Error('商品が0件');
+    products = list;
+    products.forEach(p => (selectedColor[p.id] = 0));
+    // 今の商品一覧にない商品・色をカートから取り除く
+    cart = cart.filter(x => { const p = findProduct(x.id); return p && p.colors[x.ci]; });
+    store('nekomo-cart', cart);
+    renderProducts();
+    renderCart();
+  } catch (e) {
+    console.warn('Notion から商品を読み込めなかったため、予備の商品データを表示しています', e);
+  }
+}
+
 renderProducts();
 renderCart();
+loadProducts();
